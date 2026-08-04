@@ -1,8 +1,622 @@
-<!DOCTYPE html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>Zawadi-Media</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zawadi Media | By Auduvant Technologies</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Variables based on your palette */
+        :root {
+            --primary: #2563EB;
+            --accent: #3B82F6;
+            --bg: #FFFFFF;
+            --light-gray: #F8FAFC;
+            --dark-text: #111827;
+            --font-main: 'Inter', sans-serif;
+        }
+
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            color: var(--dark-text);
+            background-color: var(--bg);
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        h1, h2, h3, h4, .logo {
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            color: var(--primary);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: #FFFFFF;
+            border: 2px solid var(--primary);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent);
+            border-color: var(--accent);
+            color: #FFFFFF;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--dark-text);
+            border: 2px solid var(--light-gray);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--dark-text);
+        }
+
+        /* Navigation */
+        header {
+            padding: 24px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 32px;
+        }
+
+        nav a {
+            font-size: 0.95rem;
+            color: var(--dark-text);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            max-width: 800px;
+            margin: 0 auto 24px;
+            letter-spacing: -1.5px;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #4B5563; /* slightly lighter text for body */
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 80px;
+        }
+
+        .hero-mockup {
+            width: 100%;
+            max-width: 1000px;
+            height: 500px;
+            margin: 0 auto;
+            background-color: var(--light-gray);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9CA3AF;
+            font-size: 1.2rem;
+            border: 1px dashed #CBD5E1;
+        }
+
+        /* Trust Section (No Numbers) */
+        .trust {
+            padding: 60px 0;
+            border-bottom: 1px solid var(--light-gray);
+            text-align: center;
+        }
+        
+        .trust h4 {
+            font-size: 1rem;
+            color: #6B7280;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .trust-item h3 {
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+
+        .trust-item p {
+            font-size: 0.95rem;
+            color: #4B5563;
+        }
+
+        /* Sections General */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            letter-spacing: -1px;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .service-card {
+            background-color: var(--light-gray);
+            padding: 40px;
+            border-radius: 16px;
+            transition: transform 0.2s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 16px;
+        }
+
+        .service-card p {
+            color: #4B5563;
+        }
+
+        /* Why It Works */
+        .why-works {
+            background-color: var(--light-gray);
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        .why-list {
+            list-style: none;
+        }
+
+        .why-list li {
+            font-size: 1.125rem;
+            margin-bottom: 24px;
+            padding-left: 32px;
+            position: relative;
+        }
+
+        .why-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .why-list li strong {
+            display: block;
+            margin-bottom: 4px;
+            color: var(--dark-text);
+        }
+        
+        .why-list li p {
+            font-size: 0.95rem;
+            color: #4B5563;
+        }
+
+        .why-illustration {
+            width: 100%;
+            height: 400px;
+            background-color: var(--bg);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9CA3AF;
+            border: 1px dashed #CBD5E1;
+        }
+
+        /* Process Section */
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .process-step {
+            text-align: center;
+            background-color: var(--bg);
+            z-index: 2;
+            padding: 0 20px;
+        }
+
+        .step-number {
+            width: 48px;
+            height: 48px;
+            background-color: var(--primary);
+            color: var(--bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 0 auto 16px;
+        }
+
+        .process-line {
+            position: absolute;
+            top: 24px;
+            left: 5%;
+            right: 5%;
+            height: 2px;
+            background-color: var(--light-gray);
+            z-index: 1;
+        }
+
+        /* Results / Case Study */
+        .results-card {
+            background-color: var(--dark-text);
+            color: var(--bg);
+            border-radius: 24px;
+            padding: 80px 40px;
+            text-align: center;
+        }
+
+        .results-card h2 {
+            font-size: 2.5rem;
+            max-width: 700px;
+            margin: 0 auto 32px;
+        }
+
+        .results-card .btn {
+            background-color: var(--bg);
+            color: var(--dark-text);
+            border: none;
+        }
+        
+        .results-card .btn:hover {
+            background-color: var(--light-gray);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 120px 0;
+            background-color: var(--light-gray);
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            margin-bottom: 24px;
+        }
+
+        .cta-section p {
+            font-size: 1.25rem;
+            color: #4B5563;
+            margin-bottom: 40px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 80px 0 40px;
+            border-top: 1px solid var(--light-gray);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 64px;
+            margin-bottom: 64px;
+        }
+
+        .footer-brand p {
+            margin-top: 16px;
+            color: #4B5563;
+            max-width: 300px;
+        }
+
+        .footer-links h4 {
+            margin-bottom: 24px;
+            font-size: 1.125rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #4B5563;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 32px;
+            border-top: 1px solid var(--light-gray);
+            color: #9CA3AF;
+            font-size: 0.875rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .trust-grid, .services-grid, .why-grid, .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+            .process-steps { flex-direction: column; gap: 40px; }
+            .process-line { display: none; }
+            nav ul { display: none; } /* Mobile menu placeholder */
+        }
+    </style>
 </head>
 <body>
-  <h1>Welcome to Zawadi Media</h1>
+
+    <!-- Navigation -->
+    <div class="container">
+        <header>
+            <div class="logo">Zawadi <span>Media</span></div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#work">Work</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero container">
+        <h1>Advertising That Moves Businesses Forward.</h1>
+        <p>We help startups and growing businesses reach more customers through strategic advertising, performance marketing, and creative campaigns.</p>
+        <div class="hero-buttons">
+            <a href="#" class="btn btn-primary">Get Started</a>
+            <a href="#" class="btn btn-outline">Learn More</a>
+        </div>
+        <!-- Mockup Placeholder -->
+        <div class="hero-mockup">
+            [ Illustration / Dashboard Mockup ]
+        </div>
+    </section>
+
+    <!-- Trust / Reality Check (No Wild Claims) -->
+    <section class="trust">
+        <div class="container">
+            <h4>Trusted by businesses ready to grow</h4>
+            <div class="trust-grid">
+                <div class="trust-item">
+                    <h3>Campaign Planning</h3>
+                    <p>Built for impact</p>
+                </div>
+                <div class="trust-item">
+                    <h3>Ad Spend Management</h3>
+                    <p>Optimized for ROI</p>
+                </div>
+                <div class="trust-item">
+                    <h3>Cross-Industry</h3>
+                    <p>Diverse experience</p>
+                </div>
+                <div class="trust-item">
+                    <h3>Client Success</h3>
+                    <p>Dedicated focus</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="container">
+        <div class="section-header">
+            <h2>What We Do</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Google Ads</h3>
+                <p>Target customers exactly when they're searching.</p>
+            </div>
+            <div class="service-card">
+                <h3>Social Advertising</h3>
+                <p>Reach audiences on Meta, LinkedIn, TikTok and more.</p>
+            </div>
+            <div class="service-card">
+                <h3>SEO</h3>
+                <p>Build long-term organic visibility.</p>
+            </div>
+            <div class="service-card">
+                <h3>Landing Pages</h3>
+                <p>High-converting pages designed for campaigns.</p>
+            </div>
+            <div class="service-card">
+                <h3>Analytics</h3>
+                <p>Know exactly where every dollar goes.</p>
+            </div>
+            <div class="service-card">
+                <h3>Creative</h3>
+                <p>Ad copy, graphics, and campaign assets.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why It Works -->
+    <section class="why-works">
+        <div class="container">
+            <div class="why-grid">
+                <div>
+                    <h2 style="margin-bottom: 40px; font-size: 2.5rem; letter-spacing: -1px;">Why Zawadi Media?</h2>
+                    <ul class="why-list">
+                        <li>
+                            <strong>Transparent Reporting</strong>
+                            <p>You'll always know what's working.</p>
+                        </li>
+                        <li>
+                            <strong>Performance Focused</strong>
+                            <p>Campaigns optimized for ROI.</p>
+                        </li>
+                        <li>
+                            <strong>Strategic Planning</strong>
+                            <p>Advertising aligned with your business goals.</p>
+                        </li>
+                        <li>
+                            <strong>Dedicated Support</strong>
+                            <p>Work directly with experienced marketers.</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="why-illustration">
+                    [ Secondary Illustration / Graphic ]
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process -->
+    <section class="container">
+        <div class="section-header">
+            <h2>Our Process</h2>
+        </div>
+        <div class="process-steps">
+            <div class="process-line"></div>
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <h3>Discover</h3>
+            </div>
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <h3>Strategy</h3>
+            </div>
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <h3>Launch</h3>
+            </div>
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <h3>Optimize</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent Results -->
+    <section class="container">
+        <div class="results-card">
+            <!-- Adjusted text to remove arbitrary numbers -->
+            <h2>How we consistently increase qualified leads through data-driven campaigns.</h2>
+            <a href="#" class="btn">Read Case Study</a>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Grow?</h2>
+            <p>Let's build your next campaign together.</p>
+            <a href="#" class="btn btn-primary">Schedule a Call</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo">Zawadi <span>Media</span></div>
+                    <p>Advertising solutions designed for businesses that want measurable growth. By Auduvant Technologies.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Navigation</h4>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Auduvant Technologies. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
 </body>
 </html>
