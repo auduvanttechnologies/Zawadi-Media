@@ -1,622 +1,462 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zawadi Media</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        /* CSS Variables based on your palette */
-        :root {
-            --primary: #2563EB;
-            --accent: #3B82F6;
-            --bg: #FFFFFF;
-            --light-gray: #F8FAFC;
-            --dark-text: #111827;
-            --font-main: 'Inter', sans-serif;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zawadi Media | Advertising for real businesses, free</title>
+<meta name="description" content="Zawadi Media is free advertising for real businesses on Auduvant's own sites. Every ad is reviewed by a person, and the people who see your ads aren't tracked.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<style>
+  :root{
+    --bg: #f3f5f2;
+    --surface: #ffffff;
+    --ink: #18231f;
+    --muted: #56635d;
+    --line: #d3dcd7;
+    --primary: #0e5a4a;
+    --primary-ink: #ffffff;
+    --primary-hover: #0a4739;
+    --marigold: #e8a317;
+    --ok-bg: #e6f3ec;
+    --panel: #0e5a4a;
+    --panel-ink: #f4f8f6;
+    --panel-muted: rgba(244,248,246,0.8);
+    --serif: "Iowan Old Style", "Charter", "Palatino Linotype", Palatino, Georgia, serif;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg: #101714;
+      --surface: #17211d;
+      --ink: #e7eeea;
+      --muted: #a3b1aa;
+      --line: #2c3a34;
+      --primary: #5fc2a6;
+      --primary-ink: #0b1a15;
+      --primary-hover: #7fd3bb;
+      --marigold: #f2b83a;
+      --ok-bg: #16302a;
+      color-scheme: dark;
+    }
+  }
 
-        /* Reset & Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  *, *::before, *::after{ box-sizing: border-box; }
+  html{ -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body{
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+  }
+  a{ color: var(--primary); text-underline-offset: 0.18em; }
+  a:hover{ color: var(--primary-hover); }
+  :focus-visible{ outline: 3px solid var(--marigold); outline-offset: 2px; }
+  img{ max-width: 100%; height: auto; display: block; }
+  h1, h2, h3{ font-family: var(--serif); font-weight: 600; line-height: 1.15; margin: 0; }
 
-        body {
-            font-family: var(--font-main);
-            color: var(--dark-text);
-            background-color: var(--bg);
-            line-height: 1.6;
-            font-weight: 400;
-        }
+  .skip-link{
+    position: absolute; left: 0; top: -100px; z-index: 100;
+    background: var(--marigold); color: #18231f; padding: 10px 18px; font-weight: 600;
+  }
+  .skip-link:focus{ top: 0; }
 
-        h1, h2, h3, h4, .logo {
-            font-weight: 700;
-            line-height: 1.2;
-        }
+  .wrap{ max-width: 72rem; margin: 0 auto; padding: 0 1.5rem; }
 
-        a {
-            text-decoration: none;
-            color: inherit;
-            transition: color 0.2s ease;
-        }
+  .band{
+    height: 10px;
+    background:
+      repeating-linear-gradient(135deg, #e8a317 0 6px, transparent 6px 12px),
+      repeating-linear-gradient(45deg, #ffffff22 0 6px, transparent 6px 12px),
+      #0b4a3d;
+  }
 
-        a:hover {
-            color: var(--primary);
-        }
+  /* ---------- buttons ---------- */
+  .button{
+    display: inline-flex; align-items: center; justify-content: center;
+    min-height: 2.75rem; padding: 0.55rem 1.25rem;
+    border: 1px solid var(--primary); border-radius: 6px;
+    background: var(--primary); color: var(--primary-ink);
+    font: inherit; font-weight: 600; text-decoration: none; white-space: nowrap;
+  }
+  .button:hover{ background: var(--primary-hover); border-color: var(--primary-hover); color: var(--primary-ink); }
+  .button.secondary{ background: transparent; color: var(--primary); }
+  .button.secondary:hover{ background: var(--ok-bg); color: var(--primary); }
+  .button.on-panel{ background: var(--marigold); border-color: var(--marigold); color: #18231f; }
+  .button.on-panel:hover{ background: #f2b83a; border-color: #f2b83a; color: #18231f; }
+  .button.on-panel-outline{ background: transparent; border-color: rgba(244,248,246,0.6); color: var(--panel-ink); }
+  .button.on-panel-outline:hover{ background: rgba(244,248,246,0.1); color: var(--panel-ink); }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
+  /* ---------- header ---------- */
+  .site-header{ background: var(--panel); color: var(--panel-ink); }
+  .site-header .wrap{ display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 4.5rem; }
+  .brand{ display: inline-flex; align-items: center; gap: 0.6rem; color: inherit; text-decoration: none; }
+  .brand:hover{ color: inherit; }
+  .brand svg{ width: 2rem; height: 2rem; flex-shrink: 0; }
+  .brand-name{ font-family: var(--serif); font-weight: 600; font-size: 1.3rem; }
+  .nav-links{ display: flex; align-items: center; gap: 1.6rem; }
+  .nav-links a{ color: var(--panel-muted); text-decoration: none; font-weight: 500; font-size: 0.95rem; }
+  .nav-links a:hover{ color: var(--panel-ink); text-decoration: underline; }
+  .nav-actions{ display: flex; align-items: center; gap: 0.75rem; }
+  .nav-actions .sign-in{ color: var(--panel-ink); font-weight: 600; text-decoration: none; }
+  .nav-actions .sign-in:hover{ color: var(--panel-ink); text-decoration: underline; }
 
-        /* Buttons */
-        .btn {
-            display: inline-block;
-            padding: 14px 28px;
-            border-radius: 8px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: background-color 0.2s ease, transform 0.1s ease;
-            text-align: center;
-        }
+  /* ---------- hero ---------- */
+  .hero{ background: var(--panel); color: var(--panel-ink); padding: 4.5rem 0 4rem; }
+  .hero-grid{ display: grid; grid-template-columns: 7fr 5fr; gap: 3rem; align-items: center; }
+  .eyebrow{
+    display: inline-block; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--marigold); margin-bottom: 1rem;
+  }
+  .hero h1{ font-size: clamp(2.4rem, 5vw, 3.6rem); margin-bottom: 1.25rem; }
+  .hero p.lede{ font-size: 1.2rem; color: var(--panel-muted); max-width: 36rem; margin: 0 0 2rem; }
+  .hero-actions{ display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  .facts{ list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem; }
+  .facts li{
+    background: rgba(244,248,246,0.08); border: 1px solid rgba(244,248,246,0.18);
+    border-radius: 10px; padding: 1rem 1.15rem; color: var(--panel-muted);
+  }
+  .facts strong{ display: block; color: var(--panel-ink); font-size: 1.05rem; margin-bottom: 0.15rem; }
 
-        .btn-primary {
-            background-color: var(--primary);
-            color: #FFFFFF;
-            border: 2px solid var(--primary);
-        }
+  /* ---------- sections ---------- */
+  section{ padding: 5rem 0; }
+  .section-head{ max-width: 44rem; margin-bottom: 2.5rem; }
+  .section-head.center{ text-align: center; margin-left: auto; margin-right: auto; }
+  .kicker{
+    font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--primary); margin-bottom: 0.6rem;
+  }
+  .section-head h2{ font-size: clamp(1.9rem, 3.5vw, 2.6rem); margin-bottom: 0.8rem; }
+  .section-head p{ color: var(--muted); margin: 0; font-size: 1.1rem; }
 
-        .btn-primary:hover {
-            background-color: var(--accent);
-            border-color: var(--accent);
-            color: #FFFFFF;
-        }
+  .card{
+    background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 1.5rem;
+  }
+  .card h3{ font-size: 1.3rem; margin-bottom: 0.5rem; }
+  .card p{ margin: 0; color: var(--muted); }
 
-        .btn-outline {
-            background-color: transparent;
-            color: var(--dark-text);
-            border: 2px solid var(--light-gray);
-        }
+  /* where ads appear */
+  .where-grid{ display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+  .where-grid .tag{
+    display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 0.2rem 0.6rem; border-radius: 999px; margin-bottom: 0.75rem;
+    background: var(--ok-bg); color: var(--primary);
+  }
+  .where-grid .tag.soon{ background: transparent; border: 1px solid var(--line); color: var(--muted); }
 
-        .btn-outline:hover {
-            border-color: var(--dark-text);
-        }
+  /* how it works */
+  .alt{ background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .steps{ list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.25rem; counter-reset: step; }
+  .steps li{ counter-increment: step; background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 1.5rem; }
+  .steps li::before{
+    content: counter(step);
+    display: grid; place-items: center; width: 2.25rem; height: 2.25rem; border-radius: 50%;
+    background: var(--marigold); color: #18231f; font-weight: 700; margin-bottom: 1rem;
+  }
+  .steps h3{ font-size: 1.2rem; margin-bottom: 0.4rem; }
+  .steps p{ margin: 0; color: var(--muted); font-size: 0.98rem; }
 
-        /* Navigation */
-        header {
-            padding: 24px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+  /* app */
+  .app-preview{
+    background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 10px;
+    box-shadow: 0 20px 50px rgba(15, 40, 32, 0.12); margin: 0;
+  }
+  .app-preview img{ border-radius: 8px; width: 100%; }
+  .app-preview figcaption{ padding: 1rem 0.4rem 0.4rem; }
+  .app-preview figcaption h3{ font-size: 1.25rem; margin-bottom: 0.25rem; }
+  .app-preview figcaption p{ margin: 0; color: var(--muted); font-size: 0.98rem; }
+  .app-large{ max-width: 64rem; margin: 0 auto; }
+  .app-grid{ display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.75rem; margin-top: 1.75rem; }
+  .app-action{ text-align: center; margin-top: 2.5rem; }
 
-        .logo {
-            font-size: 1.5rem;
-            letter-spacing: -0.5px;
-        }
+  /* targeting + privacy */
+  .two-col{ display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 3rem; align-items: start; }
+  .checks{ list-style: none; margin: 0; padding: 0; display: grid; gap: 0.9rem; }
+  .checks li{ position: relative; padding-left: 2rem; }
+  .checks li::before{
+    content: ""; position: absolute; left: 0; top: 0.35rem; width: 1.15rem; height: 1.15rem; border-radius: 50%;
+    background: var(--ok-bg); border: 2px solid var(--primary);
+  }
+  .checks strong{ display: block; }
+  .checks span{ color: var(--muted); }
 
-        .logo span {
-            color: var(--primary);
-        }
+  /* pricing */
+  .plans{ display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; max-width: 56rem; margin: 0 auto; }
+  .plan{ display: flex; flex-direction: column; }
+  .plan.featured{ border: 2px solid var(--primary); }
+  .plan .price{ font-family: var(--serif); font-size: 2.6rem; font-weight: 600; margin: 0.25rem 0 0; color: var(--ink); }
+  .plan .price-note{ color: var(--muted); font-size: 0.95rem; margin: 0 0 1.25rem; }
+  .plan ul{ margin: 0 0 1.5rem; padding-left: 1.2rem; color: var(--ink); }
+  .plan li{ margin-bottom: 0.45rem; }
+  .plan .button{ margin-top: auto; align-self: flex-start; white-space: normal; text-align: center; }
+  .fine{ text-align: center; color: var(--muted); font-size: 0.95rem; max-width: 44rem; margin: 1.75rem auto 0; }
 
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 32px;
-        }
+  /* cta */
+  .cta{ background: var(--panel); color: var(--panel-ink); text-align: center; padding: 4.5rem 0; }
+  .cta h2{ font-size: clamp(1.9rem, 3.5vw, 2.6rem); margin-bottom: 0.8rem; }
+  .cta p{ color: var(--panel-muted); margin: 0 auto 2rem; max-width: 38rem; font-size: 1.1rem; }
+  .cta .hero-actions{ justify-content: center; }
 
-        nav a {
-            font-size: 0.95rem;
-            color: var(--dark-text);
-        }
+  /* footer */
+  .site-footer{ padding: 1.5rem 0 2.5rem; color: var(--muted); font-size: 0.9rem; }
+  .site-footer .wrap{ display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; align-items: baseline; }
+  .site-footer p{ margin: 0; }
+  .site-footer ul{ list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.35rem 1.1rem; }
+  .site-footer a{ color: var(--muted); }
+  .site-footer a:hover{ color: var(--ink); }
 
-        /* Hero Section */
-        .hero {
-            padding: 120px 0 80px;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            max-width: 800px;
-            margin: 0 auto 24px;
-            letter-spacing: -1.5px;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: #4B5563; /* slightly lighter text for body */
-            max-width: 700px;
-            margin: 0 auto 40px;
-        }
-
-        .hero-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            margin-bottom: 80px;
-        }
-
-        .hero-mockup {
-            width: 100%;
-            max-width: 1000px;
-            height: 500px;
-            margin: 0 auto;
-            background-color: var(--light-gray);
-            border-radius: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #9CA3AF;
-            font-size: 1.2rem;
-            border: 1px dashed #CBD5E1;
-        }
-
-        /* Trust Section (No Numbers) */
-        .trust {
-            padding: 60px 0;
-            border-bottom: 1px solid var(--light-gray);
-            text-align: center;
-        }
-        
-        .trust h4 {
-            font-size: 1rem;
-            color: #6B7280;
-            margin-bottom: 40px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .trust-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-        }
-
-        .trust-item h3 {
-            font-size: 1.25rem;
-            margin-bottom: 8px;
-            color: var(--primary);
-        }
-
-        .trust-item p {
-            font-size: 0.95rem;
-            color: #4B5563;
-        }
-
-        /* Sections General */
-        section {
-            padding: 100px 0;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 64px;
-        }
-
-        .section-header h2 {
-            font-size: 2.5rem;
-            letter-spacing: -1px;
-        }
-
-        /* Services Grid */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
-        }
-
-        .service-card {
-            background-color: var(--light-gray);
-            padding: 40px;
-            border-radius: 16px;
-            transition: transform 0.2s ease;
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .service-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 16px;
-        }
-
-        .service-card p {
-            color: #4B5563;
-        }
-
-        /* Why It Works */
-        .why-works {
-            background-color: var(--light-gray);
-        }
-
-        .why-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 64px;
-            align-items: center;
-        }
-
-        .why-list {
-            list-style: none;
-        }
-
-        .why-list li {
-            font-size: 1.125rem;
-            margin-bottom: 24px;
-            padding-left: 32px;
-            position: relative;
-        }
-
-        .why-list li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--primary);
-            font-weight: 700;
-        }
-
-        .why-list li strong {
-            display: block;
-            margin-bottom: 4px;
-            color: var(--dark-text);
-        }
-        
-        .why-list li p {
-            font-size: 0.95rem;
-            color: #4B5563;
-        }
-
-        .why-illustration {
-            width: 100%;
-            height: 400px;
-            background-color: var(--bg);
-            border-radius: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #9CA3AF;
-            border: 1px dashed #CBD5E1;
-        }
-
-        /* Process Section */
-        .process-steps {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-        }
-
-        .process-step {
-            text-align: center;
-            background-color: var(--bg);
-            z-index: 2;
-            padding: 0 20px;
-        }
-
-        .step-number {
-            width: 48px;
-            height: 48px;
-            background-color: var(--primary);
-            color: var(--bg);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin: 0 auto 16px;
-        }
-
-        .process-line {
-            position: absolute;
-            top: 24px;
-            left: 5%;
-            right: 5%;
-            height: 2px;
-            background-color: var(--light-gray);
-            z-index: 1;
-        }
-
-        /* Results / Case Study */
-        .results-card {
-            background-color: var(--dark-text);
-            color: var(--bg);
-            border-radius: 24px;
-            padding: 80px 40px;
-            text-align: center;
-        }
-
-        .results-card h2 {
-            font-size: 2.5rem;
-            max-width: 700px;
-            margin: 0 auto 32px;
-        }
-
-        .results-card .btn {
-            background-color: var(--bg);
-            color: var(--dark-text);
-            border: none;
-        }
-        
-        .results-card .btn:hover {
-            background-color: var(--light-gray);
-        }
-
-        /* CTA Section */
-        .cta-section {
-            text-align: center;
-            padding: 120px 0;
-            background-color: var(--light-gray);
-        }
-
-        .cta-section h2 {
-            font-size: 3rem;
-            margin-bottom: 24px;
-        }
-
-        .cta-section p {
-            font-size: 1.25rem;
-            color: #4B5563;
-            margin-bottom: 40px;
-        }
-
-        /* Footer */
-        footer {
-            padding: 80px 0 40px;
-            border-top: 1px solid var(--light-gray);
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 64px;
-            margin-bottom: 64px;
-        }
-
-        .footer-brand p {
-            margin-top: 16px;
-            color: #4B5563;
-            max-width: 300px;
-        }
-
-        .footer-links h4 {
-            margin-bottom: 24px;
-            font-size: 1.125rem;
-        }
-
-        .footer-links ul {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-
-        .footer-links a {
-            color: #4B5563;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 32px;
-            border-top: 1px solid var(--light-gray);
-            color: #9CA3AF;
-            font-size: 0.875rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .trust-grid, .services-grid, .why-grid, .footer-grid { grid-template-columns: 1fr; gap: 40px; }
-            .process-steps { flex-direction: column; gap: 40px; }
-            .process-line { display: none; }
-            nav ul { display: none; } /* Mobile menu placeholder */
-        }
-    </style>
+  @media (max-width: 960px){
+    .nav-links{ display: none; }
+    .hero-grid, .two-col{ grid-template-columns: 1fr; gap: 2rem; }
+    .steps{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 640px){
+    .wrap{ padding: 0 1rem; }
+    .nav-actions .sign-in{ display: none; }
+    .hero{ padding: 3rem 0; }
+    section{ padding: 3.5rem 0; }
+    .steps, .where-grid, .app-grid, .plans{ grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce){ html{ scroll-behavior: auto; } }
+</style>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to main content</a>
 
-    <!-- Navigation -->
-    <div class="container">
-        <header>
-            <div class="logo">Zawadi Media | <span>By Auduvant Technologies</span></div>
-            <nav>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#work">Work</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </header>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Zawadi Media home">
+      <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect x="2" y="8" width="28" height="22" rx="3" fill="#f4f8f6"/><rect x="14" y="8" width="4" height="22" fill="#e8a317"/><rect x="2" y="16" width="28" height="4" fill="#e8a317"/><path d="M16 8c-2.5-5-9-5.5-8.5-1.5C8 9 12.5 8 16 8zm0 0c2.5-5 9-5.5 8.5-1.5C24 9 19.5 8 16 8z" fill="#e8a317"/></svg>
+      <span class="brand-name">Zawadi Media</span>
+    </a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#how">How it works</a>
+      <a href="#app">Zawadi Media App</a>
+      <a href="#privacy">Privacy</a>
+      <a href="#pricing">Pricing</a>
+    </nav>
+    <div class="nav-actions">
+      <a class="sign-in" href="https://zawadi.auduvanttechnologies.com/sign-in.html">Sign in</a>
+      <a class="button on-panel" href="https://zawadi.auduvanttechnologies.com/sign-up.html">Start advertising</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<div class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">By Auduvant Technologies</span>
+      <h1>Advertising for real businesses, free.</h1>
+      <p class="lede">Put your business in front of the people who use Auduvant's sites, starting with Genvium. Creating an account takes about five minutes, and running your ads costs nothing.</p>
+      <div class="hero-actions">
+        <a class="button on-panel" href="https://zawadi.auduvanttechnologies.com/sign-up.html">Create a free account</a>
+        <a class="button on-panel-outline" href="#how">See how it works</a>
+      </div>
+    </div>
+    <ul class="facts">
+      <li><strong>Your ads cost nothing to run.</strong>No budgets and no bidding. Every business gets a fair share of space.</li>
+      <li><strong>Every ad is reviewed by a person.</strong>Usually within eight hours, with a clear fix if anything needs changing.</li>
+      <li><strong>The people who see your ads aren't tracked.</strong>You get honest totals, never profiles.</li>
+    </ul>
+  </div>
+</div>
+<div class="band" aria-hidden="true"></div>
+
+<section id="where">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker">Where your ads appear</p>
+      <h2>On Auduvant's own sites, never across the web</h2>
+      <p>Zawadi Media shows ads only on sites and apps run by Auduvant Technologies. Your ad never follows anyone around the internet.</p>
+    </div>
+    <div class="where-grid">
+      <div class="card">
+        <span class="tag">Live now</span>
+        <h3>Genvium</h3>
+        <p>A platform that helps founders find startup funding. A natural audience for business services, tools, banking, legal help and anything else a growing company needs. <a href="https://www.genvium.com">genvium.com</a></p>
+      </div>
+      <div class="card">
+        <span class="tag soon">Coming</span>
+        <h3>More Auduvant sites</h3>
+        <p>As Auduvant launches new sites, your ads can appear there too, under the same rules, at no cost.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how" class="alt">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="kicker">How it works</p>
+      <h2>From sign-up to a live ad</h2>
+      <p>A few checks up front keep fake and spam accounts out, so the space stays fair for every real business.</p>
+    </div>
+    <ol class="steps">
+      <li>
+        <h3>Create your account</h3>
+        <p>Sign up with your work email and your registered business details. You must be 18 or older.</p>
+      </li>
+      <li>
+        <h3>Confirm your business</h3>
+        <p>We check that your email's domain belongs to your business, and your bank confirms a card in your business's name is real. Nothing is charged or held.</p>
+      </li>
+      <li>
+        <h3>Build your ad</h3>
+        <p>Create a campaign, then add an ad: an optional image, a headline, a line or two of text and the page people visit when they click.</p>
+      </li>
+      <li>
+        <h3>Reviewed, then live</h3>
+        <p>A person reviews every ad, usually within eight hours. Once it's approved, it runs, and you see how many times it was shown, seen and clicked.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section id="app">
+  <div class="wrap">
+    <div class="section-head center">
+      <p class="kicker">Zawadi Media App</p>
+      <h2>Everything in one place</h2>
+      <p>Build campaigns, write and preview ads, and follow how they're doing, all from the Zawadi Media App in your browser.</p>
     </div>
 
-    <!-- Hero Section -->
-    <section class="hero container">
-        <h1>Advertising That Moves Businesses Forward.</h1>
-        <p>We help startups and growing businesses reach more customers through strategic advertising, performance marketing, and creative campaigns.</p>
-        <div class="hero-buttons">
-            <a href="#" class="btn btn-primary">Get Started</a>
-            <a href="#" class="btn btn-outline">Learn More</a>
-        </div>
-        <!-- Mockup Placeholder -->
-        <div class="hero-mockup">
-            [ Illustration / Dashboard Mockup ]
-        </div>
-    </section>
+    <figure class="app-preview app-large">
+      <img src="images/app-campaign.png" alt="A campaign page in the Zawadi Media App, showing how many times its ads were shown, seen and clicked today, in the last 7 days and in total." width="1600" height="1000" loading="lazy">
+      <figcaption>
+        <h3>See how every campaign is doing</h3>
+        <p>Start, pause or end a campaign, and follow how often its ads are shown, seen and clicked, today, this week and all time.</p>
+      </figcaption>
+    </figure>
 
-    <!-- Trust / Reality Check (No Wild Claims) -->
-    <section class="trust">
-        <div class="container">
-            <h4>Trusted by businesses ready to grow</h4>
-            <div class="trust-grid">
-                <div class="trust-item">
-                    <h3>Campaign Planning</h3>
-                    <p>Built for impact</p>
-                </div>
-                <div class="trust-item">
-                    <h3>Ad Spend Management</h3>
-                    <p>Optimized for ROI</p>
-                </div>
-                <div class="trust-item">
-                    <h3>Cross-Industry</h3>
-                    <p>Diverse experience</p>
-                </div>
-                <div class="trust-item">
-                    <h3>Client Success</h3>
-                    <p>Dedicated focus</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div class="app-grid">
+      <figure class="app-preview">
+        <img src="images/app-ad.png" alt="The ad editor in the Zawadi Media App, with a live preview of the ad beside the form." width="1600" height="1000" loading="lazy">
+        <figcaption>
+          <h3>Write your ad and preview it</h3>
+          <p>Add an image, a headline and a line of text, and see exactly how your ad will look before you submit it.</p>
+        </figcaption>
+      </figure>
+      <figure class="app-preview">
+        <img src="images/app-intelligence.png" alt="A Campaign Intelligence report in the Zawadi Media App, comparing a business's ads with the average in its industry." width="1600" height="1000" loading="lazy">
+        <figcaption>
+          <h3>Campaign Intelligence</h3>
+          <p>With Premium, a weekly report shows how your ads perform next to your industry, built only from totals.</p>
+        </figcaption>
+      </figure>
+    </div>
 
-    <!-- Services -->
-    <section id="services" class="container">
-        <div class="section-header">
-            <h2>What We Do</h2>
-        </div>
-        <div class="services-grid">
-            <div class="service-card">
-                <h3>Website Ads</h3>
-                <p>Target customers exactly when they're searching.</p>
-            </div>
-            <div class="service-card">
-                <h3>Social Advertising</h3>
-                <p>Reach audiences on Meta, LinkedIn, TikTok and more.</p>
-            </div>
-            <div class="service-card">
-                <h3>SEO</h3>
-                <p>Build long-term organic visibility.</p>
-            </div>
-            <div class="service-card">
-                <h3>Landing Pages</h3>
-                <p>High-converting pages designed for campaigns.</p>
-            </div>
-            <div class="service-card">
-                <h3>Analytics</h3>
-                <p>Know exactly where every dollar goes.</p>
-            </div>
-            <div class="service-card">
-                <h3>Creative</h3>
-                <p>Ad copy, graphics, and campaign assets.</p>
-            </div>
-        </div>
-    </section>
+    <div class="app-action">
+      <a class="button" href="https://zawadi.auduvanttechnologies.com/sign-up.html">Open the Zawadi Media App</a>
+    </div>
+  </div>
+</section>
 
-    <!-- Why It Works -->
-    <section class="why-works">
-        <div class="container">
-            <div class="why-grid">
-                <div>
-                    <h2 style="margin-bottom: 40px; font-size: 2.5rem; letter-spacing: -1px;">Why Zawadi Media?</h2>
-                    <ul class="why-list">
-                        <li>
-                            <strong>Transparent Reporting</strong>
-                            <p>You'll always know what's working.</p>
-                        </li>
-                        <li>
-                            <strong>Performance Focused</strong>
-                            <p>Campaigns optimized for ROI.</p>
-                        </li>
-                        <li>
-                            <strong>Strategic Planning</strong>
-                            <p>Advertising aligned with your business goals.</p>
-                        </li>
-                        <li>
-                            <strong>Dedicated Support</strong>
-                            <p>Work directly with experienced marketers.</p>
-                        </li>
-                    </ul>
-                </div>
-                <div class="why-illustration">
-                    [ Secondary Illustration / Graphic ]
-                </div>
-            </div>
-        </div>
-    </section>
+<section id="targeting" class="alt">
+  <div class="wrap two-col">
+    <div class="section-head">
+      <p class="kicker">Reach</p>
+      <h2>Local or country-wide, your choice</h2>
+      <p>Run your ads across a whole country, or only around the city you serve.</p>
+    </div>
+    <ul class="checks">
+      <li><strong>The whole country</strong><span>Reaches the most people.</span></li>
+      <li><strong>Around a city</strong><span>Choose a city and a distance in miles. Ads are shown to people whose internet connection is in or near it. Good for local shops and services.</span></li>
+      <li><strong>Dates and daily limits</strong><span>Set start and end dates, and the most times your ads can show each day.</span></li>
+      <li><strong>A fair share for everyone</strong><span>Large advertisers can't crowd out small ones.</span></li>
+    </ul>
+  </div>
+</section>
 
-    <!-- Process -->
-    <section class="container">
-        <div class="section-header">
-            <h2>Our Process</h2>
-        </div>
-        <div class="process-steps">
-            <div class="process-line"></div>
-            <div class="process-step">
-                <div class="step-number">1</div>
-                <h3>Discover</h3>
-            </div>
-            <div class="process-step">
-                <div class="step-number">2</div>
-                <h3>Strategy</h3>
-            </div>
-            <div class="process-step">
-                <div class="step-number">3</div>
-                <h3>Launch</h3>
-            </div>
-            <div class="process-step">
-                <div class="step-number">4</div>
-                <h3>Optimize</h3>
-            </div>
-        </div>
-    </section>
+<section id="privacy">
+  <div class="wrap two-col">
+    <div class="section-head">
+      <p class="kicker">Privacy</p>
+      <h2>Ads that respect the people who see them</h2>
+      <p>People trust ads more when they aren't being watched. Zawadi Media is built so nobody is.</p>
+      <p style="margin-top:1rem;"><a href="https://www.auduvanttechnologies.com/legal/zawadi-privacy.html">Read the Zawadi Media privacy policy</a></p>
+    </div>
+    <ul class="checks">
+      <li><strong>No cookies, nothing stored in the browser</strong><span>Our ads don't set cookies and don't store anything on the devices of the people who see them.</span></li>
+      <li><strong>No profiles, no IP addresses kept</strong><span>We don't know who sees your ads, and we never build a picture of anyone.</span></li>
+      <li><strong>Global Privacy Control honored</strong><span>If someone's browser asks for less data, we record even less and show them country-wide ads only.</span></li>
+      <li><strong>Honest totals for you</strong><span>You see how many times your ads were shown, seen and clicked. Never anything about a person.</span></li>
+      <li><strong>Every ad checked by a person</strong><span>Ads must follow the <a href="https://www.auduvanttechnologies.com/legal/advertising-policy.html">Advertising Policy</a>. You can appeal each decision once.</span></li>
+    </ul>
+  </div>
+</section>
 
-    <!-- Recent Results -->
-    <section class="container">
-        <div class="results-card">
-            <!-- Adjusted text to remove arbitrary numbers -->
-            <h2>How we consistently increase qualified leads through data-driven campaigns.</h2>
-            <a href="#" class="btn">Read Case Study</a>
-        </div>
-    </section>
+<section id="pricing" class="alt">
+  <div class="wrap">
+    <div class="section-head center">
+      <p class="kicker">Pricing</p>
+      <h2>Running ads is free</h2>
+      <p>On every plan. Premium adds weekly reports for businesses that want to go further.</p>
+    </div>
+    <div class="plans">
+      <div class="card plan">
+        <h3>Free</h3>
+        <p class="price">US$0</p>
+        <p class="price-note">For every business</p>
+        <ul>
+          <li>Run ads on Auduvant's sites</li>
+          <li>Country-wide or city targeting</li>
+          <li>Every ad reviewed by a person</li>
+          <li>Shown, seen and click totals for every campaign</li>
+        </ul>
+        <a class="button secondary" href="https://zawadi.auduvanttechnologies.com/sign-up.html">Create a free account</a>
+      </div>
+      <div class="card plan featured">
+        <h3>Premium</h3>
+        <p class="price">US$5</p>
+        <p class="price-note">a month, tax included. Cancel at any time.</p>
+        <ul>
+          <li>Everything in Free</li>
+          <li>Campaign Intelligence: a weekly report on how your ads perform next to your industry</li>
+          <li>The devices, times of day and days of the week that work best for businesses like yours</li>
+          <li>Where your ads are seen, and which regions show the most interest in your industry</li>
+          <li>Plain-language suggestions, built only from totals</li>
+        </ul>
+        <a class="button" href="https://zawadi.auduvanttechnologies.com/sign-up.html">Start with Free, upgrade any time</a>
+      </div>
+    </div>
+    <p class="fine">Premium renews every month until you cancel. Payments are handled by Stripe, and Zawadi Media never sees your card number. See the <a href="https://www.auduvanttechnologies.com/legal/zawadi-terms.html">Product Terms</a>.</p>
+  </div>
+</section>
 
-    <!-- CTA -->
-    <section class="cta-section">
-        <div class="container">
-            <h2>Ready to Grow?</h2>
-            <p>Let's build your next campaign together.</p>
-            <a href="#" class="btn btn-primary">Contact Us</a>
-        </div>
-    </section>
+<section class="cta">
+  <div class="wrap">
+    <h2>Ready to reach new customers?</h2>
+    <p>Create your free account in about five minutes.</p>
+    <div class="hero-actions">
+      <a class="button on-panel" href="https://zawadi.auduvanttechnologies.com/sign-up.html">Start advertising</a>
+      <a class="button on-panel-outline" href="mailto:support@auduvanttechnologies.com">Ask us a question</a>
+    </div>
+  </div>
+</section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <div class="logo">Zawadi <span>Media</span></div>
-                    <p>Advertising solutions designed for businesses that want measurable growth. By Auduvant Technologies.</p>
-                </div>
-                <div class="footer-links">
-                    <h4>Navigation</h4>
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4>Resources</h4>
-                    <ul>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Auduvant Technologies. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+</main>
+
+<div class="band" aria-hidden="true"></div>
+<footer class="site-footer">
+  <div class="wrap">
+    <p>&copy; 2026 Auduvant Technologies LLC. Zawadi Media is a service of Auduvant Technologies.</p>
+    <nav aria-label="Legal">
+      <ul>
+        <li><a href="https://www.auduvanttechnologies.com/legal/zawadi-privacy.html">Privacy Policy</a></li>
+        <li><a href="https://www.auduvanttechnologies.com/legal/zawadi-terms.html">Product Terms</a></li>
+        <li><a href="https://www.auduvanttechnologies.com/legal/advertising-policy.html">Advertising Policy</a></li>
+        <li><a href="https://www.auduvanttechnologies.com/legal/terms.html">Terms of Use</a></li>
+        <li><a href="https://www.auduvanttechnologies.com/legal/copyright.html">Copyright</a></li>
+        <li><a href="https://www.auduvanttechnologies.com/legal/accessibility.html">Accessibility</a></li>
+        <li><a href="mailto:support@auduvanttechnologies.com">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>
 
 </body>
 </html>
